@@ -1,10 +1,6 @@
 #include "interface.h"
 
-
-int main(){
-
+int main() {
     auto n = Foo::number;
-
     return 0;
-
 }

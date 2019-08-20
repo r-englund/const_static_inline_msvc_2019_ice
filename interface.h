@@ -1,16 +1,23 @@
 #pragma once
 
 #if BUILD_DLL
-#define API __declspec(dllexport)
+    #ifdef _WIN32
+        #define API __declspec(dllexport)
+    #else
+        #define API __attribute__((visibility("default")))
+    #endif
 #else
-#define API __declspec(dllimport)
+    #ifdef _WIN32
+        #define API __declspec(dllimport)
+    #else 
+        #define API
+    #endif
 #endif
 
-class API Foo{
-    public:
+struct API Foo {
+    
     Foo();
-
-    void test() {}
+    void test();
 
     static inline const int number = 3; // Works
     static inline const auto func = &Foo::test; // Generates ICE

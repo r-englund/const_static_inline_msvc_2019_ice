@@ -1,11 +1,15 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.13.4)
 project(static_inline)
 
 add_library(interface SHARED interface.cpp interface.h)
 
 target_compile_definitions(interface PRIVATE BUILD_DLL)
 
-target_compile_options(interface PUBLIC /std:c++17)
+if(MSVC)
+    target_compile_options(interface PUBLIC /std:c++17)
+else()
+    target_compile_options(interface PUBLIC --std=c++17)
+endif()
 
 
 add_executable(main main.cpp)

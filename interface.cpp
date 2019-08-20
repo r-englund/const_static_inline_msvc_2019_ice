@@ -1,8 +1,9 @@
-
-
-
 #include "interface.h"
 
-Foo::Foo(){
-    
+Foo::Foo() {
+
+}
+
+void Foo::test() {
+
 }
